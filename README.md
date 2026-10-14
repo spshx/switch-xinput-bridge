@@ -52,7 +52,7 @@ Windows SmartScreen may warn about an unknown publisher because the `.exe` isn't
 
 **Option B: run from source (needs [Python 3.9+](https://www.python.org/downloads/))**
 1. Download this repo (**Code → Download ZIP**) and extract it.
-2. Double-click **`install.bat`** (only needed once).
+2. Double-click **`install.bat`** (only needed once). If you skipped step 1, the ViGEmBus installer will pop up during this step. Accept it.
 3. Double-click **`start.bat`** and keep the window open while you play.
 
 ### 4. Play

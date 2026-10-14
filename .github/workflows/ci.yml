@@ -16,7 +16,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -e .[dev]
+      # vgamepad's setup.py launches the ViGEmBus MSI when the driver is missing,
+      # which blocks forever on CI. The tests don't need it, so skip it here.
+      - run: python -m pip install --no-deps -e . && python -m pip install hidapi pytest
+        shell: bash
       - run: python -m pytest -v
       - name: CLI smoke test
         run: |
