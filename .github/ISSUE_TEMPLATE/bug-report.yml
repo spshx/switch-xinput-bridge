@@ -1,0 +1,22 @@
+name: Bug report
+description: Something isn't working as described
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Please check docs/TROUBLESHOOTING.md first. Most "no input" problems are fixed by pairing the controller again.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Bridge output (run with --verbose)
+      render: text
+  - type: input
+    id: setup
+    attributes:
+      label: Controller, Windows version, and how you run it (exe or source)

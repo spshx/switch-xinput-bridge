@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e .[dev] pyinstaller
+      - run: python -m pytest
+      - name: Build standalone exe
+        run: python scripts/build_exe.py
+      - name: Smoke test exe
+        run: dist/switch-xinput-bridge.exe --version
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "${{ github.ref_name }}" dist/switch-xinput-bridge.exe
+          --title "${{ github.ref_name }}" --notes-file CHANGELOG.md

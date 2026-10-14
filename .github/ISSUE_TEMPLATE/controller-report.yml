@@ -1,0 +1,49 @@
+name: Controller report
+description: Tell us whether a controller works (or doesn't) with switch-xinput-bridge
+title: "[Controller] <brand and model>"
+labels: ["controller-report"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Controller brand and model
+      placeholder: e.g. Lic Pro Controller (Switch 2 style)
+    validations:
+      required: true
+  - type: input
+    id: vidpid
+    attributes:
+      label: VID:PID
+      description: Shown by `switch-xinput-bridge --list` (check-controllers.bat)
+      placeholder: e.g. 0E6F:018C
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Does it work?
+      options:
+        - "Yes, everything works"
+        - "Partly (some buttons or sticks are wrong)"
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    id: list-output
+    attributes:
+      label: Output of `--list`
+      render: text
+  - type: textarea
+    id: raw-output
+    attributes:
+      label: Output of `--raw` while pressing buttons (if something is wrong)
+      render: text
+  - type: input
+    id: games
+    attributes:
+      label: Games tested
+      placeholder: e.g. It Takes Two (EA app)
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else

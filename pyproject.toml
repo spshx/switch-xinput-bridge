@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "switch-xinput-bridge"
+dynamic = ["version"]
+description = "Use Switch-style Bluetooth controllers (Lic Pro Controller and similar) as Xbox controllers in PC games"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Sahil Sharma" }]
+requires-python = ">=3.9"
+dependencies = [
+    "hidapi>=0.14",
+    "vgamepad>=0.1.0; sys_platform == 'win32'",
+]
+keywords = ["switch", "pro controller", "xinput", "vigem", "gamepad", "bluetooth", "lic"]
+classifiers = [
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: Games/Entertainment",
+    "Topic :: System :: Hardware :: Universal Serial Bus (USB) :: Human Interface Device (HID)",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+switch-xinput-bridge = "switch_xinput_bridge.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/spshx/switch-xinput-bridge"
+Issues = "https://github.com/spshx/switch-xinput-bridge/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "switch_xinput_bridge.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
